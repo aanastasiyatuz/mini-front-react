@@ -16,6 +16,14 @@ const ProductUpdate = () => {
     const [selectedFile, setSelectedFile] = useState(productToEdit.image);
     const navigate = useNavigate();
 
+    const notify = (errors) => {
+        for (let [field, error] of Object.entries(errors)) {
+            toast.error(`${field}: ${error}`, {
+                icon: false, theme: "dark"
+            });
+        }
+    }
+
     useEffect(() => {
         editProduct(id)
     }, [])
@@ -23,6 +31,7 @@ const ProductUpdate = () => {
     useEffect(() => {
         setInpTitle(productToEdit.title);
         setInpPrice(productToEdit.price);
+        setInpDescription(productToEdit.desc);
         setSelectedFile(productToEdit.image);
     }, [productToEdit])
 
@@ -56,10 +65,16 @@ const ProductUpdate = () => {
     return (
         <>
             {inpTitle ? (
-                        <div style={{ "width": "100vw", "height": "100vh", "display": "flex", "alignItems": "center", "justifyContent": "center" }}>
-                        <div className="card" style={{ "width": "50vw" }}>
-                            <div className='card-body'>
+                <div className="d-flex justify-content-center mt-4" style={{ 'width': '100%' }}>
+                    <div className="d-flex justify-content-between align-items-start" style={{'width':'95%'}}>
+                        <div className='d-flex align-items-center justify-content-center' style={{ 'width': '25%' }}>
+                            <img src={productToEdit.image} style={{ 'width': '100%' }} alt="..." />
+                        </div>
+                        <div className="card" style={{ 'width': '60%' }}>
+                            <div className='d-flex flex-column align-items-start p-4' style={{'height':'100%'}}>
                                 <h2>Update product</h2>
+                                <div className='mb-3'>
+                                </div>
                                 <div className="mb-3">
                                     <input value={inpTitle} onChange={(e) => setInpTitle(e.target.value)} type="text" className="form-control" placeholder="title" />
                                 </div>
@@ -77,6 +92,7 @@ const ProductUpdate = () => {
                             </div>
                         </div>
                     </div>
+                </div>
             ) : (null)}
         </>
     );

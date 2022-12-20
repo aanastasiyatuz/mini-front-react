@@ -47,8 +47,8 @@ const AddProduct = () => {
     }
 
     return (
-        <div style={{ "width": "100vw", "height": "100vh", "display": "flex", "alignItems": "center", "justifyContent": "center" }}>
-            <div className="card" style={{ "width": "50vw" }}>
+        <div className='d-flex align-items-center justify-content-center mt-5' >
+            <div className="card" style={{ "width": "50%" }}>
                 <div className='card-body'>
                     <h2>Create product</h2>
                     <div className="mb-3">
